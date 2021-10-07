@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Jannis Klose">
+    <title>Blutbilder-Verwaltung</title>
+
+
+</head>
+<body class="text-center">
+
+<main class="form-signin" id="logo">
+
+    <img class="mb-4" src="./assets/images/arvato-logo-svg-data.svg" alt="" width="126" height="100">
+    <h1 class="h3 mb-3 fw-normal">Blutbilder-Verwaltung</h1>
+
+    <div class="form-floating">
+        <input type="url" id="inputWebID" class="form-control" value="https://pod.inrupt.com/jannis"  placeholder="pod.inrupt.com/max.muster" >
+        <label for="inputWebID">WebId-Adresse</label>
+    </div>
+
+    <br>
+    <select class="form-select" id="identityProvider" aria-label="Pod Provider" required>
+        <option value="-1" selected disabled>PodProvider auswählen</option>
+        <option value="https://broker.pod.inrupt.com">Inrupt Pods Alpha</option>
+        <option value="2">Inrupt.net</option>
+        <option value="3">SolidCommunity</option>
+    </select>
+
+    <br>
+    <button class="w-100 btn btn-lg btn-primary"  id="signinButton" type="button">Anmelden</button>
+    <p class="mt-5 mb-3 text-muted">&copy;2021 - Arvato Systems</p>
+
+</main>
+
+
+
+</body>
+</html>

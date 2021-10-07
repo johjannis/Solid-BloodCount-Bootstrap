@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Blutbilderverwaltung Dashboard</title>
+</head>
+
+<body>
+<nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-button" id="content">
+    <div class="container-fluid"><a class="navbar-brand" href="#"><img src="./assets/images/arvato-logo-svg-data.svg" width="75">Blutbilder-Verwaltung</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <ul class="navbar-nav me-auto nav">
+                <li class="nav-item"><a class="nav-link active" href="#allgemeines">Allgemeine Informationen</a></li>
+                <li class="nav-item"><a class="nav-link" href="#blutbilder">Blutbilder</a></li>
+                <li class="nav-item"><a class="nav-link" href="#berechtigungen">Berechtigungen</a></li>
+                <li class="nav-item"><a class="nav-link" href="#einstellungen">Einstellungen</a></li>
+            </ul><span class="navbar-text actions"> <a class="btn btn-light action-button" id="logOut" role="button" href="" style="background: #0068A9;">Ausloggen</a></span>
+        </div>
+    </div>
+</nav>
+<div class="container" data-bs-spy="scroll" data-bs-target="#content" data-bs-offset="0">
+    <div class="col" id="allgemeines">
+        <section class="highlight-clean">
+            <div class="container" id="BCHeader">
+                <h2 class="text-start">Allgemeine Informationen</h2>
+                <h4 class="text-start">Aktuelle Blutwerte</h4>
+            </div>
+        </section>
+    </div>
+    <div class="col" id="blutbilder">
+        <section class="highlight-clean">
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-start">Blutbilder</h2>
+                </div>
+                <div class="col text-end align-self-center"><button class="btn btn-outline-primary" type="button" data-bs-target="#addBloodCountModal" data-bs-toggle="modal">Hinzufügen</button></div>
+            </div>
+            <div class="container">
+                <div id="accordionBloodCount" class="accordion">
+
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col" id="berechtigungen">
+        <section class="highlight-clean">
+            <h2 class="text-start">Berechtigungen</h2>
+            <div class="container">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fa fa-pencil px-2"></i>Editoren</h4>
+                        <h6 class="text-muted card-subtitle mb-2">Editoren können Ihre Blutbilder einsehen, bearbeiten und löschen</h6>
+                        <ul class="list-group mt-4">
+                            <li class="list-group-item" style="font-weight: bold;"><input type="checkbox" class="form-check-input me-1">Praxis Dr. Steinkamp &lt;pod.inrupt.com/praxissteinkamp&gt;</li>
+                            <li class="list-group-item" style="font-weight: bold;"><input type="checkbox" class="form-check-input me-1">medizinisches Gesundheitszentrum Bad Lippspringe (MZG) &lt;mzg.arvato-systems.com&gt;</li>
+                            <li class="list-group-item" style="font-weight: bold;"><input type="checkbox" class="form-check-input me-1">Max Mustermann &lt;maxmuster.solidcommunity.net&gt;</li>
+                        </ul><button class="btn btn-outline-danger mt-4" type="button" data-bs-target="#deleteEditorPermissionModal" data-bs-toggle="modal">Berechtigung entfernen</button><button class="btn btn-outline-primary mt-4 mx-4" type="button" data-bs-target="#addNewEditorModal" data-bs-toggle="modal">neuer Eintrag</button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title"><i class="fa fa-eye px-2"></i>Betrachter</h4>
+                        <h6 class="text-muted card-subtitle mb-2">Betrachter können ihre Blutbilder einsehen, aber nicht bearbeiten oder modifizieren</h6>
+                        <ul class="list-group mt-4">
+                            <li class="list-group-item" style="font-weight: bold;"><input type="checkbox" class="form-check-input me-1">Alexander Kulbartsch</li>
+                            <li class="list-group-item" style="font-weight: bold;"><input type="checkbox" class="form-check-input me-1">Meikel Bode</li>
+                            <li class="list-group-item" style="font-weight: bold;"><input type="checkbox" class="form-check-input me-1">Jan Arensmeyer</li>
+                        </ul><button class="btn btn-outline-danger mt-4" type="button" data-bs-target="#deleteViewerPermissionModal" data-bs-toggle="modal">Berechtigung entfernen</button><button class="btn btn-outline-primary mt-4 mx-4" type="button" data-bs-target="#addNewViewerModal" data-bs-toggle="modal">neuer Eintrag</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <div class="col" id="einstellungen">
+        <section class="highlight-clean">
+            <h2 class="text-start">Einstellungen</h2>
+            <div class="container"></div>
+        </section>
+    </div>
+</div>
+<div class="modal fade" role="dialog" tabindex="-1" id="addBloodCountModal" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticAddBloodCountLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="staticAddBloodCountLabel">Blutbild hinzufügen</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="modal-bodyAddBC"><label class="form-label" for="addBloodCountDate">Datum:</label>
+                <div class="input-group mb-3"><span class="input-group-text">Datum des Blutbilds</span><input id="addBloodCountDate" type="date"></div><label class="form-label" for="addBloodCountRBC">Werte:</label>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">Erythrozyten</span><input type="number" id="addBloodCountRBC"><span class="input-group-text">Mio./µl</span></div>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">Leukozyten</span><input type="number" id="addBloodCountRBC-7"><span class="input-group-text">Tsd./µl</span></div>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">Thrombozyten&nbsp;&nbsp;</span><input type="number" id="addBloodCountRBC-6"><span class="input-group-text">Tsd./µl</span></div>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">Hämatokrit</span><input type="number" id="addBloodCountRBC-5"><span class="input-group-text">%</span></div>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">Hämoglobin</span><input type="number" id="addBloodCountRBC-4"><span class="input-group-text">g/dl</span></div>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">MCV</span><input type="number" id="addBloodCountRBC-3"><span class="input-group-text">fl</span></div>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">MCH</span><input type="number" id="addBloodCountRBC-2"><span class="input-group-text">pg</span></div>
+                <div class="input-group mb-2"><span class="input-group-text" style="width: 130px;">MCHC</span><input type="number" id="addBloodCountRBC-1"><span class="input-group-text">g/dl</span></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Abbrechen</button><button class="btn btn-primary" id="finishAddBC" data-bs-dismiss="modal" type="button">Speichern</button></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" role="dialog" tabindex="-1" id="deleteBloodCountModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Blutbild löschen</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Möchten Sie das Blutbild wirklich löschen?</p>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Abbrechen</button><button class="btn btn-danger" type="button">Löschen</button></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" role="dialog" tabindex="-1" id="deleteEditorPermissionModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Berechtigungen entfernen</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Den ausgewählten Personen wird die Berechtigung als Editor entzogen. Fortfahren?</p>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Abbrechen</button><button class="btn btn-danger" type="button">Entfernen</button></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" role="dialog" tabindex="-1" id="deleteViewerPermissionModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Berechtigung entfernen</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Den ausgewählten Personen wird die Berechtigung als Betrachter entzogen. Fortfahren?</p>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Abbrechen</button><button class="btn btn-danger" type="button">Entfernen</button></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" role="dialog" tabindex="-1" id="addNewViewerModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Betrachter hinzufügen</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"><label class="form-label" for="addViewerWEBID">Pod des Betrachters:</label>
+                <div class="input-group mb-3"><span class="input-group-text">WebID</span><input type="url" id="addViewerWEBID" style="width: 344px;"></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Abbrechen</button><button class="btn btn-primary" type="button">Speichern</button></div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" role="dialog" tabindex="-1" id="addNewEditorModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Editor hinzufügen</h4><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body"><label class="form-label" for="addEditorWEBID">Pod des Editors:</label>
+                <div class="input-group mb-3"><span class="input-group-text">WebID</span><input type="url" id="addEditorWEBID" style="width: 344px;"></div>
+            </div>
+            <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Abbrechen</button><button class="btn btn-primary" type="button">Speichern</button></div>
+        </div>
+    </div>
+</div>
+<div class="toast align-items-center" role="alert" aria-live="assertive" id="toastSuccess" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            Blutbild erfolgreich gespeichert!
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
+<div class="toast align-items-center text-white bg-danger border-0" id="toastError" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="d-flex">
+        <div class="toast-body">
+            Ein Fehler ist aufgetreten!
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+</div>
+<footer id="footerpad">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-lg-8 mx-auto">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse"></i></span></a></li>
+                    <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse"></i></span></a></li>
+                    <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-instagram fa-stack-1x fa-inverse"></i></span></a></li>
+                    <li class="list-inline-item"><a href="#"><span class="fa-stack fa-lg"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x fa-inverse"></i></span></a></li>
+                </ul>
+                <p class="copyright text-muted text-center">Copyright © Arvato Systems 2021 | Web Design by Arvato Systems</p>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+
+</html>
